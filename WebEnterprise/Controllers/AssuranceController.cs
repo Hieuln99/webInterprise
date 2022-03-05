@@ -58,7 +58,13 @@ namespace WebEnterprise.Controllers
 
         public IActionResult EditAssurance(string id)
         {
-            var assurance = context.Users.FirstOrDefault(u => u.Id == id);
+            var assurance = context.Users.Where(u => u.Id == id).Select(u => new UserDTO
+            {
+                Email = u.Email,
+                FullName = u.FullName,
+                PhoneNumber = u.PhoneNumber,
+                UserName = u.UserName
+            }).FirstOrDefault();
             if (assurance == null)
             {
                 return RedirectToAction("Index");
@@ -67,16 +73,24 @@ namespace WebEnterprise.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditAssurance(UserDTO assurance)
+        public IActionResult EditAssurance(UserDTO res)
         {
+
             if (ModelState.IsValid)
             {
-                context.Entry(assurance).State = EntityState.Modified;
-                context.SaveChanges();
-                TempData["message"] = $"Successfully Edit Assurance {assurance.FullName}";
+                var assurance = context.Users.Find(res.Id);
+                if(assurance != null)
+                {
+                    assurance.Email = res.Email;
+                    assurance.FullName = res.FullName;
+                    assurance.UserName = res.UserName;
+                    assurance.PhoneNumber = res.PhoneNumber;
+                    context.SaveChanges();
+                    TempData["message"] = $"Successfully Edit Assurance {assurance.FullName}";
+                }
                 return RedirectToAction("Index");
             }
-            return View(assurance);
+            return View(res);
         }
 
         public IActionResult DeleteAssurance(string id)
