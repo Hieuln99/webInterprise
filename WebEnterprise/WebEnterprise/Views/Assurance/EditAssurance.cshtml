@@ -1,0 +1,54 @@
+﻿@model WebEnterprise.Models.DTO.UserDTO
+
+@{
+    ViewData ["Title"] ="Index";
+    Layout = "../Shared/_AdminLayout.cshtml";
+}
+
+<div class="modal-content">
+    <div class="modal-body modal-body-md">
+        <h5 class="title">Edit Assurance Account</h5>
+       <form asp-action="EditAssurance" method="post" class="pt-2" enctype="multipart/form-data">
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="UserName">User Name</label>
+                    <input asp-for="UserName" type="text" class="form-control mb-2" id="UserName" placeholder="UserName">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="FullName">Full Name</label>
+                    <input asp-for="FullName" type="text" class="form-control mb-2" name5="FullName" placeholder="FullName">
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+            </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="Email">Email</label>
+                    <input asp-for="Email" type="text" class="form-control mb-2" name="Email" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="PhoneNumber">Phone</label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control mb-2" name="PhoneNumber" placeholder="PhoneNumber">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                    <li>
+                        <button class="btn btn-primary">Save Change</button>
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+    </div><!-- .modal-body -->
+</div>

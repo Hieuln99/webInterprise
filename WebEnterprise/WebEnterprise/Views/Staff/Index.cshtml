@@ -1,0 +1,172 @@
+﻿@model IEnumerable<WebEnterprise.Models.DTO.UserDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "../Shared/_AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+
+     <!-- main header  -->
+                <!-- main header  -->
+                <!-- content  -->
+                <div class="nk-content ">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Staff</h3>
+                                        </div><!-- .nk-block-head-content -->
+                                        <div class="nk-block-head-content">
+                                            <div class="toggle-wrap nk-block-tools-toggle">
+                                                <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                                <div class="toggle-expand-content" data-content="pageMenu">
+                                                    <ul class="nk-block-tools g-3">
+                                                        <li>
+                                                            <div class="form-control-wrap">
+                                                                <div class="form-icon form-icon-right">
+                                                                    <em class="icon ni ni-search"></em>
+                                                                </div>
+                                                                <input type="text" class="form-control" id="Search" name="Search" placeholder="Quick search by id">
+                                                            </div>
+                                                        </li>
+                                                         <li class="nk-block-tools-opt">
+                                                            <a data-target="addstaff" class="toggle btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
+                                                            <a data-target="addstaff" class="toggle btn btn-primary d-none d-md-inline-flex" style=" color:white"><em class="icon ni ni-plus"></em><span>Add Staff Account</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div><!-- .nk-block-head-content -->
+                                    </div><!-- .nk-block-between -->
+                                </div><!-- .nk-block-head -->
+                                <div class="nk-block">
+                                    <div class="card card-bordered">
+                                        <div class="card-inner-group">
+                                            <div class="card-inner p-0">
+                                                <div class="nk-tb-list">
+                                                    <div class="nk-tb-item nk-tb-head">
+                                                        <div class="nk-tb-col tb-col-sm"><span>Name</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>Email</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>User Name</span></div>
+                                                       
+                                                         <div class="nk-tb-col tb-col-md">
+                                                            <ul class="nk-tb-actions gx-1 my-n1">
+
+                                                                <li class="mr-n1">
+                                                                    <div><span>Action</span></div>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+
+                                                    </div><!-- .nk-tb-item -->
+
+
+                                                    @foreach (var item in Model) 
+                                                    {
+                                                     <div class="nk-tb-item">
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-lead">
+                                                                @Html.DisplayFor(modelItem => item.FullName)
+                                                            </span>
+                                                        </div>
+                                                        <div class="nk-tb-col">
+                                                            <span class="tb-sub">
+                                                                @Html.DisplayFor(modelItem => item.Email)
+                                                            </span>
+                                                        </div>
+
+                                                         <div class="nk-tb-col">
+                                                            <span class="tb-sub">
+                                                                @Html.DisplayFor(modelItem => item.UserName)
+                                                            </span>
+                                                        </div>
+                                                       
+                                                        <div class="nk-tb-col nk-tb-col-tools">
+                                                            <ul class="nk-tb-actions gx-1 my-n1">
+                                                                <li class="mr-n1">
+                                                                    <div class="dropdown">
+                                                                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                            <ul class="link-list-opt no-bdr">
+                                                                                <li><span>@Html.ActionLink("Edit", "EditStaff", new { id = item.Id })</span></li>
+                                                                                <li><span>@Html.ActionLink("Delete", "DeleteStaff", new { id = item.Id }, new {onClick = "return confirm('Are you sure?')"})</span></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- .nk-tb-item -->
+
+                                                 }
+
+                                                   
+                                                </div><!-- .nk-tb-list -->
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                    <form method="post" asp-action="AddStaff" asp-controller="Staff">
+                        <div class="nk-add-product toggle-slide toggle-slide-right" data-content="addstaff" data-toggle-screen="any" data-toggle-overlay="true" data-toggle-body="true" data-simplebar>
+                            <div class="nk-block-head">
+                                <div class="nk-block-head-content">
+                                    <h5 class="nk-block-title">New Staff</h5>
+                                    <div class="nk-block-des">
+                                        <p>Add Staff information.</p>
+                                    </div>
+                                </div>
+                            </div><!-- .nk-block-head -->
+                            <div class="nk-block">
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label class="form-label" for="Email">Email</label>
+                                            <div class="form-control-wrap">
+                                                <input type="text" class="form-control" name="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="FullName">Full Name</label>
+                                            <div class="form-control-wrap">
+                                                <input type="text" class="form-control" name="FullName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label" for="UserName">User Name</label>
+                                            <div class="form-control-wrap">
+                                                <input type="text" class="form-control" name="UserName">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button class="btn btn-primary"><em class="icon ni ni-plus"></em><span>Add</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content  -->
+
+</body>
+</html>

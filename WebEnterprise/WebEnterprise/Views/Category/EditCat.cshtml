@@ -1,0 +1,39 @@
+﻿@model WebEnterprise.Models.Category
+
+@{
+    ViewData ["Title"] ="Index";
+    Layout = "../Shared/_AdminLayout.cshtml";
+}
+
+<div class="modal-content">
+    <div class="modal-body modal-body-md">
+        <h5 class="title">Edit Category</h5>
+        <form asp-action="EditCat" method="post" class="pt-2" enctype="multipart/form-data">
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="Name"> Name</label>
+                    <input asp-for="Name" type="text" class="form-control mb-2" id="Name" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="Description"> Description</label>
+                    <input asp-for="Description" type="text" class="form-control mb-2" id="Description" placeholder="Description">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                    <li>
+                        <button class="btn btn-primary">Edit Category</button>
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+    </div><!-- .modal-body -->
+</div>
